@@ -128,13 +128,29 @@ li{
 
 #balancePlot{
   background-color: none;
-  margin-top: -58px;
-  margin-left: 35px;
+  margin-top: -15px;
+  margin-left: -85px;
 } 
 
-#balancePlot .legend {
-  position: absolute;
-  right: 1000px;
-  width: 200px;  /* Adjust width */
-  height: 300px; /* Adjust height */
+#welcomeMessage{
+  font-size: 36px;
+  font-weight:700;
+  margin-top: -40px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+#total{
+  position: relative;
+  top: -277px;
+  left: 325px;
+  width: 30px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.charts{
+  display: flex;
+  justify-content: space-between;
 }
