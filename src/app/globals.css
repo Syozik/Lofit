@@ -1,6 +1,6 @@
 :root {
   background: rgb(140,165,209);
-  background: radial-gradient(circle, rgba(140,165,209,1) 0%, rgba(179,188,202,1) 77%, rgba(255,255,255,1) 100%);
+  background: radial-gradient(rgba(140,165,209,1) 0%, rgba(179,188,202,1) 77%);
   --max-width: 1100px;
   --border-radius: 12px;
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
@@ -130,6 +130,7 @@ li{
   background-color: none;
   margin-top: -15px;
   margin-left: -85px;
+  width: 40vw;
 } 
 
 #welcomeMessage{
@@ -152,5 +153,36 @@ li{
 
 .charts{
   display: flex;
+  gap: 50px;
   justify-content: space-between;
+}
+
+#balance-history-plot{
+  margin-top: -10px;
+  margin-left: 30px;
+}
+.balanceHistorySettings{
+  margin-left: 110px;
+}
+
+.balanceHistorySettingsButtons{
+  margin-top: 15px;
+  margin-left: -5px;
+}
+
+.balanceHistorySettingsButtons>button{
+  padding: 5px 20px;
+  color: white;
+  font-size: 14px;
+  background-color: rgb(20, 20, 77);  
+  border: 1px solid black;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.balanceHistorySettingsButtons>input{
+  padding: 5px 15px;
+  font-size: 14px;
+  border: 1px solid black;
+  border-radius: 15px;
 }

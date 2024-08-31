@@ -7,8 +7,8 @@ function numLength(num: number): number {
 }
 
 export default function  BalancePieChart(){
-  const balance = getBalance(1272179);
-  const {user_name, currency} = getAccountInfo(1272179);
+  const balance = getBalance(1);
+  const {user_name, currency} = getAccountInfo(1);
   const initialTotal = Object.values(balance).reduce(
     (partialSum, a) => partialSum + a,
     0);
@@ -77,9 +77,7 @@ export default function  BalancePieChart(){
     Plotly.newPlot("balancePlot", data, layout, config).then((plot) => {
       plot.on('plotly_relayout', updateTitle);
     });
-    return () => {
-      Plotly.purge("balancePlot");
-    };
+    
   }, []);
 
   let totalStyle = {transform: `translateX(${52 - 6*numLength(total)}px)`};
