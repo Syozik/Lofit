@@ -41,7 +41,7 @@ export default function BalanceHistoryPlot(){
             marker: {
                 size: 5,
                 line: {
-                    color: 'rgba(0,200,20,0.7)', // Darker outline
+                    color: 'rgba(0,200,20,0.7)', 
                     width: 2
                 }
             },
@@ -55,13 +55,14 @@ export default function BalanceHistoryPlot(){
         const layout = {
             title: {
                 text: 'Balance History',
-                // color: 'rgba(255,255,255,1)',
-                font: { size: 32, family: "Roboto", weight: "bold",},
+                font: { size: 32, family: "Roboto", weight: "bold", color: 'white'},
                 y: 0.92,
                 x: 0.1,
             },
+            color: 'white',
             xaxis: {
-                gridcolor: 'rgba(60,60,60,0)',
+                color: 'white',
+                gridcolor: 'rgba(120,120,120,0)',
                 linewidth:1, 
                 linecolor:'black',
                 mirror:true,
@@ -69,6 +70,7 @@ export default function BalanceHistoryPlot(){
                 range: [addDays(selectedDateRange[0], -1), addDays(selectedDateRange[1], 1)],
             },
             yaxis: {
+                color: 'white',
                 rangemode: 'tozero',
                 ticksuffix: "  ",
                 linewidth:1, 
@@ -76,7 +78,7 @@ export default function BalanceHistoryPlot(){
                 mirror:true,
                 ticks:'inside', 
                 showline:true,
-                gridcolor: 'rgba(60,60,60,1)',
+                gridcolor: 'rgba(120,120,120,1)',
             },
             width: 800,
             height: 550,
@@ -85,10 +87,11 @@ export default function BalanceHistoryPlot(){
         }
         const config = {
             displayModeBar: false,
+            scrollZoom: false,
         };        
         
         
-        Plotly.newPlot('balance-history-plot', data, layout, config);
+        Plotly.react('balance-history-plot', data, layout, config);
     }, [selectedDateRange]);
 
     console.log(selectedDateRange);
@@ -96,7 +99,7 @@ export default function BalanceHistoryPlot(){
         <div>
             <div id="balance-history-plot" />
                 <div className = "balanceHistorySettings" style={{display: 'flex', flexDirection: 'column'}}>
-                    <label>Select Date Range</label>
+                    <label style={{color: 'white', fontSize: '16px', fontWeight: 'bold'}}>Select Date Range</label>
                     <div className = "balanceHistorySettingsButtons" style={{display: 'flex', flexDirection: 'row', gap: '5px'}}>
                         <button onClick={() => setSelectedDateRange([addDays(dates[0], -7), dates[0]])}>Last week</button>
                         <button onClick={() => setSelectedDateRange([new Date(new Date().setMonth(new Date().getMonth() - 1)), dates[0]])}>Last month</button>

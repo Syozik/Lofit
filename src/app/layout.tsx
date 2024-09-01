@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Lofit",
-  description: "Lofit",
+  description: "Convenient financial management",
 };
 
 export default function RootLayout({
@@ -37,17 +37,17 @@ export default function RootLayout({
               <li>
                 <Link href="/history">Check history</Link>
               </li>
-              <li style={{ textDecoration: "none" }} className="add">
+              <li style={{ textDecoration: "none" }}>
                 Add ...
                 <ul
                   className={styles.addList}
                   style={{ textDecoration: "underline" }}
                 >
-                  <li>
-                    <Link href="/expense">Expense</Link>
+                  <li className = {styles.addExpenseIncome}>
+                    <Link style={{width: "100%"}}href="/expense">Expense</Link>
                   </li>
-                  <li>
-                    <Link href="/income">Income</Link>
+                  <li className = {styles.addExpenseIncome}>
+                    <Link style={{width: "100%"}}href="/income">Income</Link>
                   </li>
                 </ul>
               </li>

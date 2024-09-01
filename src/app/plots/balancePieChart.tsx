@@ -7,8 +7,8 @@ function numLength(num: number): number {
 }
 
 export default function  BalancePieChart(){
-  const balance = getBalance(1);
-  const {user_name, currency} = getAccountInfo(1);
+  const balance = getBalance(1272179) as Record<string, number>;
+  const {user_name, currency} = getAccountInfo(1272179);
   const initialTotal = Object.values(balance).reduce(
     (partialSum, a) => partialSum + a,
     0);
@@ -36,9 +36,10 @@ export default function  BalancePieChart(){
     ];
 
   const layout = {
+    color: "white",
     title: {
       text: `Your Balance: ${initialTotal}${currency}`,
-      font: { size: 32, family: "Roboto", weight: "bold" },
+      font: { size: 32, family: "Roboto", weight: "bold" , color: "white"},
       y: 2,
       x: 0.5,
       xanchor: "center",
@@ -54,7 +55,7 @@ export default function  BalancePieChart(){
       },
       paper_bgcolor: "rgba(0,0,0,0)",
       height: 550,
-      width: 800,
+      width: "800",
       automargin: true,
       autosize: true,
     };
@@ -63,24 +64,24 @@ export default function  BalancePieChart(){
       displayModeBar: false,
     };
     
-    const updateTitle = (eventData) => {
-      const hidden = eventData.hiddenlabels.map((label) =>{
+    const updateTitle = (eventData: any) => {
+      const hidden = eventData.hiddenlabels.map((label: any) =>{
         const [name, value] = label.split(' - ');
         return value.slice(0,value.length-1);
       });
-      const newBalance = hidden.reduce((total, value) => {
+      const newBalance = hidden.reduce((total: number, value: number) => {
         return total - value;
       }, initialTotal);
       setTotal(newBalance/1000);
     };
 
-    Plotly.newPlot("balancePlot", data, layout, config).then((plot) => {
+    Plotly.react("balancePlot", data, layout, config).then((plot: any) => {
       plot.on('plotly_relayout', updateTitle);
     });
     
   }, []);
 
-  let totalStyle = {transform: `translateX(${52 - 6*numLength(total)}px)`};
+  let totalStyle = {transform: `translateX(${52 - 6*numLength(total)}px)`, color: "white"};
 
   return (
       <div id="balancePlot"><div id="total" style={totalStyle}>{total}K{currency}</div></div>

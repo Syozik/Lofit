@@ -1,4 +1,4 @@
-function getBalance(customer_id: number){
+function getBalance(customer_id: number):object{
     return {
         "cash" : 4500,
         "CIBC": 6000,
