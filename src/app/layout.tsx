@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className={styles.topbar}>
-          <img src="lofit_logo.svg" alt="logo" className="logo" />
+          <Link href="/"><img src="lofit_logo.svg" alt="logo" className="logo" /></Link>
           <div className={styles.functions}>
             <Link href="/settings">
               <img src="/settings.svg" className="icon" />
@@ -44,10 +44,10 @@ export default function RootLayout({
                   style={{ textDecoration: "underline" }}
                 >
                   <li className = {styles.addExpenseIncome}>
-                    <Link style={{width: "100%"}}href="/expense">Expense</Link>
+                    <Link style={{width: "100%"}}href="/add-transaction?transaction=expense">Expense</Link>
                   </li>
                   <li className = {styles.addExpenseIncome}>
-                    <Link style={{width: "100%"}}href="/income">Income</Link>
+                    <Link style={{width: "100%"}}href="/add-transaction?transaction=income">Income</Link>
                   </li>
                 </ul>
               </li>

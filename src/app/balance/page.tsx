@@ -1,18 +1,16 @@
 "use client";
-import Image from "next/image";
-import styles from "./page.module.css";
-import {getAccountInfo} from "./data/data";
+import styles from "../page.module.css";
+import {getAccountInfo} from "../data/data";
 import {useState, useEffect} from "react";
-import Balance from "./balance/page";
 import dynamic from 'next/dynamic';
 
-const BalancePieChartPromise = () => import('./plots/balancePieChart');
-const BalanceHistoryPlotPromise = () => import('./plots/balanceHistoryPlot');
+const BalancePieChartPromise = () => import('../plots/balancePieChart');
+const BalanceHistoryPlotPromise = () => import('../plots/balanceHistoryPlot');
 
 const BalancePieChart = dynamic(BalancePieChartPromise, { ssr: false });
 const BalanceHistoryPlot = dynamic(BalanceHistoryPlotPromise, { ssr: false });
 
-export default function Home() {
+export default function Balance() {
   
   const {user_name, currency} = getAccountInfo(1272179);
   const [ready, setReady] = useState(false);
@@ -25,8 +23,10 @@ export default function Home() {
   
   return (
     <>
-      <div id="welcomeMessage">Welcome back, {user_name}!</div>
-      <Balance />
+      {ready ? <div className = "charts">
+        <BalancePieChart />
+        <BalanceHistoryPlot />
+      </div> : <div className={styles.spinner}></div>}
     </>
   );
 }

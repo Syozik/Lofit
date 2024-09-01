@@ -1,0 +1,61 @@
+.addTransaction {
+    margin: -10px 0 0 25vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.transactionType {
+    color: rgb(160, 219, 180);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.transactionType p {
+    text-underline-offset: 8px;
+    transition: text-decoration 0.3s ease-in;
+}
+
+.switch {
+    background-color: rgba(0,0,0,0);
+    width: 100px;
+    height: 45px;
+    /* box-shadow: 0 0 10px -2px rgb(175, 175, 175); */
+    border: 2px solid black;
+    border-radius: 45px;
+    cursor: pointer;
+    z-index: 100;
+    transition: background-color 0.3s ease-in;
+}
+
+.switchCircle {
+    padding: 0;
+    margin-left: 2px;
+    margin-top:-1px;
+    z-index: 1;
+    height: 36px;
+    width: 36px;
+    border-radius: 36px;
+    background-color: white;
+    transition: transform 0.3s ease-out;
+}
+
+@keyframes shrinkExpand {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.7); 
+  }
+  100% {
+    transform: scale(1); 
+  }
+}
+
+.animateCircle {
+    animation: shrinkExpand 0.3s ease;
+}
