@@ -1,8 +1,7 @@
 "use client";
 import Image from "next/image";
 import styles from "./page.module.css";
-import {getAccountInfo} from "./data/data";
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
 import Balance from "./balance/page";
 import dynamic from 'next/dynamic';
 
@@ -14,7 +13,7 @@ const BalanceHistoryPlot = dynamic(BalanceHistoryPlotPromise, { ssr: false });
 
 export default function Home() {
   
-  const {user_name, currency} = getAccountInfo(1272179);
+  const {user_name, currency} = {user_name:"Serhii", currency:"$"};
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -26,7 +25,7 @@ export default function Home() {
   return (
     <>
       <div id="welcomeMessage">Welcome back, {user_name}!</div>
-      <Balance />
+      <Balance user_id={1}/>
     </>
   );
 }

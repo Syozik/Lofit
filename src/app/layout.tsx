@@ -8,6 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Lofit",
+  icons: "/lofit_logo.svg",
   description: "Convenient financial management",
 };
 
