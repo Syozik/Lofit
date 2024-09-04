@@ -24,6 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       'SELECT user_name, currency, joining_date, sections_balance, balance FROM users WHERE id = $1;',
       [id]
     );
+    
     if (accountInfo.rows.length === 0) {
       res.status(404).json({ error: 'Account not found' });
       return;

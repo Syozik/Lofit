@@ -29,10 +29,23 @@ export default function Expense() {
   const user_id = 1;
   const router = useSearchParams();
   const { transaction } = Object.fromEntries(router);
-  const [transactionType, setTransactionType] = useState(transaction);
   const [accountInfo, setAccountInfo] = useState<AccountInfo | null>(null);
-  const [currency, setCurrency] = useState("");
   const [button, setButton] = useState(0);
+  
+  const [formData, setFormData] = useState({
+      id: user_id,
+      type: "",
+      amount: "",
+      currency: "",
+      date: new Date().toISOString().split('T')[0],
+      section: "",
+      category: "",
+      description: "",
+    });
+
+  useEffect(()=>{
+    setFormData({...formData, type: transaction});
+  }, [transaction]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,50 +59,79 @@ export default function Expense() {
     fetchData();
   }, []);
 
-  const handleClick = () => {
-    setTransactionType(transactionType === "income" ? "expense" : "income");
+  const handleTypeClick = () => {
+    setFormData({...formData, type : formData.type === "income" ? "expense" : "income"});
   };
   
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData, [name]: value,
+      });
+  };
+
+  const handleSubmit = (event: React.FormEvent) =>{
+    event.preventDefault();
+
+    setButton(1);
+    const postData = new FormData();
+    
+    for (const [key, value] of Object.entries(formData)){
+      postData.append(key, value);
+    }
+    
+    fetch('/api/add-transaction/route', {
+      method: 'POST',
+      body: postData,
+    }).then((response) => {
+        setButton(2);
+        return response;
+      }).then((data)=>console.log(data))
+      .catch((error)=>console.log(error));
+    setFormData({
+      id: user_id,
+      type: formData.type,
+      amount: "",
+      currency: formData.currency,
+      date: new Date().toISOString().split('T')[0],
+      section: "",
+      category: "",
+      description: "",
+    });
+  };
+
   useEffect(() => {
     if (accountInfo) {
-      setCurrency(accountInfo.currency);
-      console.log(accountInfo);
+      setFormData({...formData, currency: accountInfo.currency});
     }
   }, [accountInfo]);
 
- 
   if (!accountInfo) return <div className={styles.spinner}></div>;
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    setButton(1);
-    setTimeout(() => {
-      setButton(2);
-    }, 1000);
-    console.log("Form submitted");
-  };
   return (
     <div className={styles.addTransaction}>
       <div className={styles.transactionType}>
-        <p style={{textDecoration: transactionType === "income" ? "underline" : "none"}}>INCOME</p>
-        <button className={styles.switch} onClick={handleClick} style={{backgroundColor: transactionType === "expense" ? "rgba(0,0,0,0.3)" : "rgba(120,120,120,0.3)"}}>
+        <p style={{textDecoration: formData.type === "income" ? "underline" : "none"}}>INCOME</p>
+        <button className={styles.switch} onClick={handleTypeClick} style={{backgroundColor: formData.type === "expense" ? "rgba(0,0,0,0.3)" : "rgba(120,120,120,0.3)"}}>
           <div className={styles.switchCircle}
-           style={{transform: transactionType === "income" ? "translateX(0)" : "translateX(56px)",}}></div>
+           style={{transform: formData.type === "income" ? "translateX(0)" : "translateX(56px)",}}></div>
         </button>
-        <p style={{textDecoration: transactionType === "expense" ? "underline" : "none"}}>EXPENSE</p>
+        <p style={{textDecoration: formData.type === "expense" ? "underline" : "none"}}>EXPENSE</p>
       </div>
-      <form className={styles.transactionForm}>
+      <form className={styles.transactionForm} onSubmit={handleSubmit}>
 
       <fieldset className={styles.amount}>
         <div className={`${styles.formGroup} ${styles.amountInput}`}>
-          <input type="text" id="amount" className={styles.formControl} placeholder=" " required/>
+          <input type="text" id="amount" name="amount" value = {formData.amount} onChange={handleInputChange} className={styles.formControl} placeholder=" " required/>
           <label htmlFor="amount" className={styles.formLabel}>Amount</label>
         </div>
         <div className={`${styles.formGroup} ${styles.currencyInput}`}>
           <select 
           id="currency" 
+          name="currency"
           className={styles.formControl} 
-          value={currency} 
-          onChange={(e) => setCurrency(e.target.value)}>
+          value = {formData.currency} 
+          onChange={handleInputChange}>
             <option value="" disabled>Select currency</option>
             {currencies.map(currency => (
               <option key={currency.code} value={currency.code}>
@@ -101,18 +143,22 @@ export default function Expense() {
         </div>
       </fieldset>
       <div className={`${styles.formGroup}`}>
-          <input type="text" id="section" className={styles.formControl} placeholder=" " required/>
+          <input type="text" name="section" id="section" value = {formData.section} onChange={handleInputChange} className={styles.formControl} placeholder=" " required/>
           <label htmlFor="section" className={styles.formLabel}>Section</label>
         </div>
         <div className={`${styles.formGroup}`}>
-          <input type="date" id="date" className={styles.formControl} defaultValue={new Date().toISOString().split('T')[0]} required/>
+          <input type="text" name="category" id="category" value = {formData.category} onChange={handleInputChange} className={styles.formControl} placeholder=" " required/>
+          <label htmlFor="category" className={styles.formLabel}>Category</label>
+        </div>
+        <div className={`${styles.formGroup}`}>
+          <input type="date" name='date' id="date" value = {formData.date} onChange={handleInputChange} className={styles.formControl} required/>
           <label htmlFor="date" className={styles.formLabel} >Date</label>
         </div>
         <div className={`${styles.formGroup}`}>
-          <textarea id="description" className={styles.formControl} placeholder="Optional" />
+          <textarea id="description" name='description' value = {formData.description} onChange={handleInputChange} className={styles.formControl} placeholder="Optional" />
           <label htmlFor="description" className={styles.formLabel} >Description</label>
         </div>
-        <div className={styles.submitDiv}><button type="submit" className={[styles.submitButton, styles.effect1, styles.effect2][button]} onClick={handleSubmit}></button></div>
+        <div className={styles.submitDiv}><button type="submit" className={[styles.submitButton, styles.effect1, styles.effect2][button]}></button></div>
       </form>
     </div>
   );

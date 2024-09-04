@@ -21,7 +21,7 @@ export default function BalancePieChart({ accountInfo, balance }: { accountInfo:
     if (accountInfo && balance !== null) {
       console.log(balance);
       const initialTotal = balance;
-      setTotal(initialTotal / 1000);
+      setTotal(initialTotal);
 
       const formattedLabels = Object.keys(accountInfo.sections_balance).map(
         (key) => `${key.toUpperCase()} - ${accountInfo.sections_balance[key]}${accountInfo.currency}`
@@ -79,7 +79,7 @@ export default function BalancePieChart({ accountInfo, balance }: { accountInfo:
         const newBalance = hidden.reduce((total: number, value: number) => {
           return total - value;
         }, initialTotal);
-        setTotal(newBalance / 1000);
+        setTotal(newBalance);
       };
 
       Plotly.react("balancePlot", data, layout, config).then((plot: any) => {
@@ -93,7 +93,7 @@ export default function BalancePieChart({ accountInfo, balance }: { accountInfo:
   return (
     <div id="balancePlot">
       <div id="total" style={totalStyle}>
-        {total}K{accountInfo?.currency}
+        {new Intl.NumberFormat().format(total)}{accountInfo?.currency}
       </div>
     </div>
   );

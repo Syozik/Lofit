@@ -128,22 +128,22 @@
 }
 
 .submitButton{
-  margin-top: 10px;
+  margin-top: 5px;
   padding: 10px 20px;
   font-size: 16px;
   width: 60%;
   background-color: white;
   color: #852999;
   /* color: white; */
-  border: 0.24rem solid #852999;
+  border: 2px solid #852999;
   border-radius: 20px;
   cursor: pointer;
-  box-shadow: 0 0 12px -4px rgb(175, 175, 175);
   transition: all 0.1s ease;
 
   &:hover{
     background-color: #852999;
     color: white;
+    border: 2px solid white;
   }
   &:active{
     letter-spacing: 0.2rem;
@@ -154,7 +154,7 @@
 }
 
 .effect1{
-  margin-top: 10px;
+  margin-top: 5px;
   width: 35px;
   height: 35px;
   background-color: rgba(0,0,0,0);
@@ -175,7 +175,7 @@
 }
 
 .effect2{
-  margin-top: 10px;
+  margin-top: 5px;
   padding: 5px 20px;
   font-size: 16px;
   width: 60%;
