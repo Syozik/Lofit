@@ -72,8 +72,6 @@
 
 .historyLists{
   display: flex;
-  gap: 30px;
-  margin: 20px;
 }
 
 .historyContainer{
@@ -82,8 +80,10 @@
   background-color: rgba(32, 32, 32, 0.37);
   display: flex;
   gap: 10px;
-  height: 60vh;
+  height: 450px;
   padding: 9px;
+  margin-left: -50px;
+  margin-top: 20px;
 }
 
 .historyContainer>div{
@@ -95,7 +95,6 @@
 }
 
 .historyContainer>div::-webkit-scrollbar-track {
-  margin-right: 10px;
   background-color:grey;
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
   border-radius: 10px;
@@ -105,4 +104,54 @@
   background-color: white;
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+.historyPlot{
+  margin-left: -20px;
+  margin-top: -30px;
+  width: 600px;
+  height: 600px;
+  z-index: -1;
+}
+
+.monthButton{
+  font-size: 22px;
+  align-self: center;
+  background-color: black;
+  border: none;
+  padding: 2px 8px;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+}
+
+.month{
+  display: flex;
+  gap: 10px;
+  margin-left: 40px;
+  margin-bottom: -10px;
+}
+
+.historyMonth{
+  color: rgb(214, 127, 13);
+  font-size: 25px;
+}
+
+.incomeTotal, .expenseTotal, .total{
+  color: white;
+  font-size: 30px;
+  margin-left: 40px;
+}
+
+.incomeTotal{
+  margin-top: -40px;
+  color: rgb(96, 252, 96);
+}
+
+.expenseTotal{
+  color: rgb(226, 38, 38);
+}
+
+.total{
+  color: rgb(107, 107, 248);
 }

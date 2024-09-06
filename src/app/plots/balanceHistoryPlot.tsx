@@ -49,12 +49,12 @@ export default function BalanceHistoryPlot({accountInfo, balance, history}:{acco
         marker: {
             size: 5,
             line: {
-                color: 'rgba(0,200,20,0.7)', 
-                width: 2
+                // color: 'rgba(219,140,20,0.7)', 
+                width: 0
             }
         },
         line: {
-            color: 'rgba(57,255,20,1)',
+            color: 'rgba(224, 92, 4,1)',
         },
         hovertemplate: '<b>Date:</b> %{x|%B %d, %Y}<br><b>Balance:</b> $%{y}<br>'
     };
