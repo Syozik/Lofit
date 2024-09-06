@@ -105,19 +105,20 @@ export default function BalanceHistoryPlot({accountInfo, balance, history}:{acco
     return(
         <div>
             <div id="balance-history-plot" />
-                <div className = "balanceHistorySettings" style={{display: 'flex', flexDirection: 'column'}}>
-                    <label style={{color: 'white', fontSize: '16px', fontWeight: 'bold'}}>Select Date Range</label>
-                    <div className = "balanceHistorySettingsButtons" style={{display: 'flex', flexDirection: 'row', gap: '5px'}}>
-                        <button onClick={() => setSelectedDateRange([addDays(dates[0], -7), dates[0]])}>Last week</button>
-                        <button onClick={() => setSelectedDateRange([new Date(new Date().setMonth(new Date().getMonth() - 1)), dates[0]])}>Last month</button>
-                        <button onClick={() => setSelectedDateRange([new Date(new Date().setFullYear(new Date().getFullYear() - 1)), dates[0]])}>Last year</button>
-                        <button onClick={() => setSelectedDateRange([dates[dates.length - 1], dates[0]])}>All Time</button>
-                    </div>
-                    <div className = "balanceHistorySettingsButtons" style={{display: 'flex', flexDirection: 'row', gap: '5px'}}>
-                        <input type="date" value={addDays(selectedDateRange[0], -1).toISOString().split('T')[0]} onChange={(e) => setSelectedDateRange([new Date(e.target.value), selectedDateRange[1]])} />
-                        <input type="date" value={addDays(selectedDateRange[1], -1).toISOString().split('T')[0]} onChange={(e) => setSelectedDateRange([selectedDateRange[0], new Date(e.target.value)])} />
-                    </div>
+            <div className = "balanceHistorySettings" style={{display: 'flex', flexDirection: 'column'}}>
+                <label style={{color: 'white', fontSize: '16px', fontWeight: 'bold'}}>Select Date Range</label>
+                <div className = "balanceHistorySettingsButtons" style={{display: 'flex', flexDirection: 'row', gap: '5px'}}>
+                    <button onClick={() => setSelectedDateRange([addDays(dates[0], -7), dates[0]])}>Last week</button>
+                    <button onClick={() => setSelectedDateRange([new Date(new Date().setMonth(new Date().getMonth() - 1)), dates[0]])}>Last month</button>
+                    <button onClick={() => setSelectedDateRange([new Date(new Date().setFullYear(new Date().getFullYear() - 1)), dates[0]])}>Last year</button>
+                    <button onClick={() => setSelectedDateRange([dates[dates.length - 1], dates[0]])}>All Time</button>
+                </div>
+                <div className = "balanceHistorySettingsButtons" style={{display: 'flex', flexDirection: 'row', gap: '5px'}}>
+                    <input type="date" value={addDays(selectedDateRange[0], -1).toISOString().split('T')[0]} onChange={(e) => setSelectedDateRange([new Date(e.target.value), selectedDateRange[1]])} />
+                    <input type="date" value={addDays(selectedDateRange[1], -1).toISOString().split('T')[0]} onChange={(e) => setSelectedDateRange([selectedDateRange[0], new Date(e.target.value)])} />
+                </div>
             </div>
-        </div>
+            </div>
+        
     )
 }

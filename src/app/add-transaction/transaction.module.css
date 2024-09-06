@@ -72,12 +72,13 @@
 }
 
 .amountInput {
-  flex: 0 0 74%; /* This makes the amount input take up 70% of the space */
+  flex: 0 0 74%; 
 }
 
 .currencyInput {
-  flex: 1; /* This makes the currency input take up the remaining space */
+  flex: 1;
 }
+
 .formControl {
   width: 100%;
   padding: 10px;
@@ -91,6 +92,7 @@
   position: absolute;
   top: 0;
   left: 10px;
+  border-radius: 20px;
   font-size: 16px;
   color: #999;
   pointer-events: none;
