@@ -24,6 +24,10 @@ interface AccountInfo {
   currency: string;
 }
 
+function DateMin(date: Date | string){
+  return new Date() < new Date(date) ? new Date().toISOString().split("T")[0] : date;
+}
+
 export default function Expense() {
   const user_id = 1;
   const router = useSearchParams();
@@ -231,7 +235,7 @@ export default function Expense() {
             type="date"
             name="date"
             id="date"
-            value={formData.date}
+            value={DateMin(formData.date)}
             onChange={handleInputChange}
             className={styles.formControl}
             required

@@ -13,8 +13,13 @@ const pool = new Pool({
 });
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { id } = req.query;
+  if (req.method != 'GET') {
+    res.status(405).json({message: 'Method not allowed'});
+    return;
+  }
 
+  const { id } = req.query;
+  console.log(req.body)
   if (!id) {
     res.status(400).json({ error: 'ID is required' });
     return;
@@ -22,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     const accountInfo = await pool.query(
-      'SELECT type, amount, date, section, category, description FROM transactions WHERE id = $1 ORDER BY date DESC;',
+      'SELECT id, type, amount, date, section, category, description FROM transactions WHERE id = $1 ORDER BY date DESC;',
       [id]
     );
 

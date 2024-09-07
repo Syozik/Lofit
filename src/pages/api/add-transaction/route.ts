@@ -69,7 +69,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const result = await pool.query("select sections_balance from users where id = $1", [parsedFields.id]);
       const sectionsBalance = result.rows[0].sections_balance;
-      console.log(sectionsBalance);
       const newSectionsBalance = {...sectionsBalance, [parsedFields.section]: (sectionsBalance[parsedFields.section] || 0) + balanceDiff};
       await pool.query("UPDATE users SET sections_balance = $1 WHERE id = $2;", [newSectionsBalance, parsedFields.id]);
       const res2 = await pool.query("select * from transactions where id = $1", [parsedFields.id]);

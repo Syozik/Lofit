@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Nunito;
+  src: url("/Nunito.ttf");
+}
+
 .spinner{
     margin-top: 255px;
     margin-left: 70%;
@@ -24,9 +29,28 @@
   padding: 5px;
   margin: 10px;
   display: grid;
-  grid-template-columns: 0.5fr 1.5fr 1fr;
+  grid-template-columns: 0.5fr 1.5fr 1fr 10px 10px;
   grid-template-rows: 1fr 1fr;
   column-gap: 10px;
+}
+
+.clickedToRemove{
+  animation: bin-bin 0.35s ease-in-out infinite; 
+}
+
+@keyframes bin-bin {
+  0% {
+    transform: translateX(0);
+    rotate: -1.5deg;
+  }
+  50% {
+    transform: translateX(5px);
+    rotate: 1deg;
+  }
+  100% {
+    transform: translateX(0);
+    rotate: -1.5deg;
+  }
 }
 
 .historyItemTopRight{
@@ -53,7 +77,7 @@
 
 .historyItemAmount{
   justify-self: end;
-  grid-column: 3;
+  grid-column: 3/-1;
   grid-row: 2;
   font-size: 22px;
   font-weight: bold;
@@ -70,8 +94,54 @@
   font-size: 20px;
 }
 
+.historyItemDescription{
+  grid-column: 1/-1;
+  grid-row: 3/-1;
+  place-self: center;
+  color: rgb(37, 37, 37);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.historyItemRemove{
+  z-index: 100;
+  grid-column: 4/-1;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  place-self: end;
+  align-self: start;
+}
+
+.historyItemRemoveImg{
+  width: 19px;
+  height: 19px;
+}
+
+.yesButton, .noButton{
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: -10px;
+  margin-top: -10px;
+}
+
+.yesButtonImg{
+  width: 25px;
+  height: 25px;
+  filter: invert(20%) sepia(99%) saturate(6488%) hue-rotate(118deg) brightness(101%) contrast(105%);
+}
+
+.noButtonImg{
+  width: 25px;
+  height: 25px;
+  filter: invert(23%) sepia(90%) saturate(6515%) hue-rotate(355deg) brightness(105%) contrast(126%);
+}
+
 .historyLists{
   display: flex;
+  /* z-index: -100; */
 }
 
 .historyContainer{
@@ -80,10 +150,13 @@
   background-color: rgba(32, 32, 32, 0.37);
   display: flex;
   gap: 10px;
+  z-index: 100;
   height: 450px;
   padding: 9px;
+  width: 280px;
   margin-left: -50px;
   margin-top: 20px;
+  overflow: hidden;
 }
 
 .historyContainer>div{
@@ -107,11 +180,10 @@
 }
 
 .historyPlot{
-  margin-left: -20px;
+  margin-left: -40px;
   margin-top: -30px;
   width: 600px;
   height: 600px;
-  z-index: -1;
 }
 
 .monthButton{
@@ -123,6 +195,7 @@
   border-radius: 12px;
   color: white;
   cursor: pointer;
+  z-index: 100;
 }
 
 .month{
@@ -134,13 +207,15 @@
 
 .historyMonth{
   color: rgb(214, 127, 13);
-  font-size: 25px;
+  font-size: 27px;
 }
 
 .incomeTotal, .expenseTotal, .total{
   color: white;
   font-size: 30px;
   margin-left: 40px;
+  font-family: Nunito, sans-serif;
+  font-weight: bold;
 }
 
 .incomeTotal{
@@ -150,8 +225,4 @@
 
 .expenseTotal{
   color: rgb(226, 38, 38);
-}
-
-.total{
-  color: rgb(107, 107, 248);
 }
