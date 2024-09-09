@@ -87,15 +87,13 @@ export default function Expense() {
     event.preventDefault();
 
     setButton(1);
-    const postData = new FormData();
 
-    for (const [key, value] of Object.entries(formData)) {
-      postData.append(key, value);
-    }
-
-    fetch("/api/add-transaction/route", {
+    fetch("/api/add-transaction", {
       method: "POST",
-      body: postData,
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json",
+      },
     })
       .then((response) => {
         setButton(2);

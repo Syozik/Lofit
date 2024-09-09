@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import styles from "./page.module.css";
+import "@/app/globals.css";
+import styles from "@/app/page.module.css";
 import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Lofit",
   icons: "/lofit_logo.svg",
-  description: "Convenient financial management",
+  description: "Convenient financial manager",
 };
 
 export default function RootLayout({

@@ -227,13 +227,18 @@ export default function History() {
       setHistory(history.filter((obj: HistoryItem) => obj !== item));
       console.log(history.filter((obj: HistoryItem) => obj !== item));
     }
-    fetch(`http://localhost:3000/api/history/remove`, {
-      body: JSON.stringify({ item }),
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    try{
+      fetch(`http://localhost:3000/api/history/remove`, {
+        body: JSON.stringify({ item }),
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
+    catch(err){
+      console.log("Error: ", err);
+    }
   };
 
   return history ? (
@@ -270,7 +275,7 @@ export default function History() {
         </div>
         <div className={styles.historyContainer}>
           <div className={styles.income}>
-            {income.map((item: any, index: number) => (
+            {income.map((item: any) => (
               <HistoryItem key={item.id+item.type+item.date+item.amount+item.section+item.category+item.description} item={item} removeItem={removeItem} />
             ))}
           </div>
@@ -289,8 +294,8 @@ export default function History() {
         </div>
         <div className={styles.historyContainer}>
           <div className={styles.expense}>
-            {expense.map((item: any, index: number) => (
-              <HistoryItem key={index} item={item} removeItem={removeItem} />
+            {expense.map((item: any) => (
+              <HistoryItem key={item.id+item.type+item.date+item.amount+item.section+item.category+item.description} item={item} removeItem={removeItem} />
             ))}
           </div>
         </div>
