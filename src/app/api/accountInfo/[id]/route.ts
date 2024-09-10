@@ -1,18 +1,7 @@
 // app/api/users/[id]/route.ts
 
 import { NextRequest, NextResponse } from 'next/server';
-import pkg from 'pg';
-import dotenv from 'dotenv';
-
-dotenv.config();
-const { Pool } = pkg;
-const pool = new Pool({
-  user: process.env.USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: 5432,
-});
+import pool from '@/app/api/db_config';
 
 export async function GET(
   request: NextRequest,

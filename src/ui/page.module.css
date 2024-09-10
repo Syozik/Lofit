@@ -1,0 +1,13 @@
+.formGroup {
+    position: relative;
+} 
+
+.formLabel {
+    position: absolute;
+    top: -8px;
+    left: 12px;
+    font-size: 15px;
+    background-color: white;
+    padding: 0 5px;
+    transform: translateY(-45%) scale(0.8) translateX(-10%);
+  }

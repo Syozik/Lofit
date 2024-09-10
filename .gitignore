@@ -2,6 +2,9 @@
 
 .vscode
 seed.ts
+info.txt
+
+.gitignore
 
 # dependencies
 /node_modules

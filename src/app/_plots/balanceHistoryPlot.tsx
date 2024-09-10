@@ -1,4 +1,4 @@
-import Plotly from "plotly.js-dist";
+import Plot from "react-plotly.js";
 import { useState, useEffect, useMemo } from "react";
 
 
@@ -98,13 +98,10 @@ export default function BalanceHistoryPlot({accountInfo, balance, history}:{acco
         scrollZoom: false,
     };
 
-    useEffect(() => {        
-        Plotly.react('balance-history-plot', data, layout, config);
-    }, [selectedDateRange]);
 
     return(
         <div>
-            <div id="balance-history-plot" />
+            <Plot data={data} layout = {layout} config={config} />
             <div className = "balanceHistorySettings" style={{display: 'flex', flexDirection: 'column'}}>
                 <label style={{color: 'white', fontSize: '16px', fontWeight: 'bold'}}>Select Date Range</label>
                 <div className = "balanceHistorySettingsButtons" style={{display: 'flex', flexDirection: 'row', gap: '5px'}}>

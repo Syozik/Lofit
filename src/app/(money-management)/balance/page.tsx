@@ -1,5 +1,5 @@
 "use client";
-import styles from "@/app/page.module.css";
+import styles from "@/app/(money-management)/page.module.css";
 import {
   useState,
   useEffect,
@@ -9,9 +9,9 @@ import {
 } from "react";
 import dynamic from "next/dynamic";
 
-const BalancePieChartPromise = () => import("../../plots/balancePieChart");
+const BalancePieChartPromise = () => import("../../_plots/balancePieChart");
 const BalanceHistoryPlotPromise = () =>
-  import("../../plots/balanceHistoryPlot");
+  import("../../_plots/balanceHistoryPlot");
 
 const BalancePieChart = dynamic(BalancePieChartPromise, { ssr: false });
 const BalanceHistoryPlot = dynamic(BalanceHistoryPlotPromise, { ssr: false });
